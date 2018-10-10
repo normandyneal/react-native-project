@@ -14,6 +14,6 @@ export const aboutRoutesConfig = {
     }
   },
   swipeEnabled: true,
-  animationEnabled: true,
+  animationEnabled: false,
   tabBarPosition: 'bottom'
 };

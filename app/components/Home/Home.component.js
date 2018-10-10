@@ -6,6 +6,8 @@ import Notes from '../Notes/Notes.component';
 import Touchable from 'react-native-platform-touchable';
 import noop from 'lodash/noop';
 import translate from '../../utils/language.utils';
+import {NavigationActions} from 'react-navigation';
+import {Tile, List, ListItem, Button} from 'react-native-elements';
 
 // Icon Usage
 import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
@@ -13,43 +15,58 @@ import icoMoonConfig from '../../assets/selection.json';
 const Icon = createIconSetFromIcoMoon(icoMoonConfig);
 
 class Home extends Component {
-  addNote = () => {
-    const {saveNote, title, text} = this.props;
-    saveNote({title, text});
-  }
-
 
 
   render () {
-    const {setTitle, title, text, setText, notes, currentLanguage, toggleLanguage} = this.props;
+    const {category, setCategory, setGigArray, setTitle, title, text, setText, currentLanguage, toggleLanguage, zipCode, setZipCode} = this.props;
 
+    const two = () => {
+      setGigArray({_id: Math.floor(Math.random() * 16777215), category: category, zipCode: zipCode, text: text, title: title});
+      setTitle('');
+      setZipCode('');
+      setCategory('');
+      setText('');
+      this.props.navigation.pop(3);
+      this.props.navigation.navigate('aboutApp');
+
+    };
 
 
 
     return (
+
       <View style={styles.container}>
-        <Text style={styles.titleHeading}>{translate('HOME_noteTitle')}</Text>
-        <Touchable style={styles.changeLanguage} onPress={toggleLanguage}>
-          <Text style={styles.changeLanguageText}>{currentLanguage}</Text>
-        </Touchable>
+
+
+
+        <Tile
+          imageSrc={{uri: 'https://www.nationalgeographic.com/content/dam/animals/pictures/mammals/b/beaver/beaver.adapt.1190.1.JPG'}}
+          featured
+          title={'Gig Summary'}
+          caption={translate('HOME_zipCodeTitle') + ': ' + zipCode + '\n' + translate('HOME_categoryTitle') + ': ' + category  }
+        />
+
+        <Text style={styles.titleHeading}>{translate('HOME_title')}</Text>
+
         <TextInput style={styles.titleTextInput}
             onChangeText={setTitle} value={title} />
-        <Text style={styles.textAreaTitle}>{translate('HOME_pleaseTypeYourNote')}  <Icon name='notepad' size={15}/></Text>
+
+        <Text style={styles.textAreaTitle}>{translate('HOME_description')}  <Icon name='notepad' size={15}/></Text>
+
         <TextInput style={styles.textArea} multiline = {true}
           onChangeText={setText} value={text}/>
-        <KeyboardAvoidingView style={styles.bottomBar}>
-          <View style={styles.bottomBarWrapper}>
-            <Text style={styles.saveBtn} onPress={this.addNote}>{translate('HOME_save')}</Text>
-            <Text style={styles.characterCount}>{text.length} {translate('HOME_characters')}</Text>
-          </View>
-        </KeyboardAvoidingView>
-        <Notes data={notes} />
-        <Touchable style={styles.aboutUsWrapper} onPress={() => this.props.navigation.navigate('aboutApp', {screen: 'AboutApp'})}>
-          <Text style={styles.aboutUs}>{translate('ABOUT_us')}</Text>
+
+        <Touchable style={styles.aboutUsWrapper} onPress={two}>
+          <Text style={styles.aboutUs}>{translate('SendGig')}</Text>
         </Touchable>
+
+
       </View>
     );
   }
+
+
+
 }
 
 Home.defaultProps = {
@@ -62,8 +79,6 @@ Home.propTypes = {
   setText: PropTypes.func,
   toggleLanguage: PropTypes.func,
   title: PropTypes.string,
-  saveNote: PropTypes.func,
-  notes: PropTypes.array,
   currentLanguage: PropTypes.string,
   text: PropTypes.string,
   navigation: PropTypes.object

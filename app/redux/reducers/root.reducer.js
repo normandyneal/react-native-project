@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import test from './test.reducer';
 import content from './content.reducer';
 import notes from './notes.reducer';
-import Router from '../../routes';
+import Router from '../../routes/about.routes';
 import userPreferences from './userPreferences.reducer';
 
 const nav = (state, action) => (

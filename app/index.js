@@ -3,6 +3,8 @@ import {initStore} from './redux/store';
 import {Provider} from 'react-redux';
 import {NativeModules} from 'react-native';
 
+
+
 import App from './App.container';
 
 const store = initStore();

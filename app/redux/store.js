@@ -1,5 +1,5 @@
 import {createStore, compose, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 // import someReduxMiddleware from 'some-redux-middleware';
 // import someOtherReduxMiddleware from 'some-other-redux-middleware';
 import rootReducer from './reducers/root.reducer';
@@ -11,9 +11,9 @@ if (typeof devToolsExtension === 'function') {
   enhancerList.push(devToolsExtension());
 }
 
-const composedEnhancer = compose(applyMiddleware(thunk), ...enhancerList);
+// const composedEnhancer = compose(applyMiddleware(thunk), ...enhancerList);
 
-const initStore = () => createStore(rootReducer, {}, composedEnhancer);
+const initStore = () => createStore(rootReducer /* ,{}, composedEnhancer*/);
 
 module.exports = {
   initStore

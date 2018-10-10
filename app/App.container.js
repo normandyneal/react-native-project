@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import Router from './routes';
 import {connect} from 'react-redux';
 import Proptypes from 'prop-types';
+import AboutRoutes from './routes/about.routes.js';
 
 
 class App extends Component {
   render () {
     const {userPreferences} = this.props;
     return (
-      <Router screenProps={userPreferences} />
+      <AboutRoutes screenProps={userPreferences} />
     );
   }
 }

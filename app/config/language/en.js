@@ -1,5 +1,20 @@
 export default {
-  HOME_noteTitle: 'Note Title',
+
+
+
+  ACTIVE_activeGig: 'Active Gig',
+
+  HOME_zipCodeTitle: 'ZipCode',
+  HOME_categoryTitle: 'Category',
+  HOME_gigDig: 'GigDig',
+  HOME_active: 'Active',
+  HOME_create: 'Create',
+  HOME_profile: 'Profile',
+
+  HOME_title: 'Gig Title',
+  HOME_description: 'Gig Description',
+
+  HOME_noteTitle: 'Enter Title Here',
   HOME_pleaseTypeYourNote: 'Please type your note below',
   HOME_startTakingNotes: 'Start taking notes',
   HOME_save: 'Save',
